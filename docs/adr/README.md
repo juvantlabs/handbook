@@ -30,6 +30,7 @@ it goes here.
 | # | Title | Status | First decided |
 |---|---|---|---|
 | [0001](0001-account-and-org-structure.md) | GitHub account and organization structure (juvantlabs / juvantio) | Accepted | 2026-05-03 |
+| [0002](0002-mcp-abstract-roles.md) | MCP abstract roles + binding policy | Accepted | 2026-05-03 |
 
 ## Modification governance
 

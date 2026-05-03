@@ -3,6 +3,13 @@
 Spec for repos that wrap a vendor's REST or webhook API as a Model Context
 Protocol server consumable by Juvant OS agents (or any MCP-aware client).
 
+> **Related**: [ADR 0002 — MCP abstract roles + binding policy](../adr/0002-mcp-abstract-roles.md)
+> codifies how abstract role qualifiers (`bank`, `fattura_elettronica`,
+> `m365-graph`) bind to concrete provider MCP servers at company init,
+> and the process for introducing new abstract roles. Read alongside
+> this spec when shipping a new MCP server that fulfills an abstract
+> role.
+
 ## Purpose
 
 Use this type when:
