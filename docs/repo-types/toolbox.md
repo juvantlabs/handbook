@@ -115,27 +115,43 @@ add the language manifest at the root:
 
 (See [library.md](library.md) for the per-language file conventions.)
 
-### Packaged vs. unpackaged tools — the dual layout
+### Entry-point modes — the three-way layout
 
-A toolbox repo MAY (and often will) host both kinds of tool side-by-side:
+A toolbox repo MAY host three distinct entry points side-by-side:
 
-| Layout | What lives there | Distribution |
-|---|---|---|
-| `<package-name>/` (e.g. `juvant_tools/`, snake_case to match the language's import rules) | Code we want versioned + importable + invokable as a CLI subcommand. Goes through `pyproject.toml` / `package.json`. Earns CHANGELOG entries, semver, and (eventually) a registry release. | `pip install <package>` / `npm install <package>` once promoted; `pip install -e .` until then. |
-| `<tool-category>/` directories at repo root (e.g. `observability/`, `build/`, `audit/`, `disclosure-helpers/`) | Standalone scripts / one-shot helpers / quick tools. Run directly. May be in a different language than the packaged code (bash, ts, etc.). | `git clone` + run-the-script. No semver, no install step. |
+| Mode | What lives there | Who consumes it | Distribution |
+|---|---|---|---|
+| **Packaged CLI** under `<package-name>/` (snake_case, e.g. `juvant_tools/`) | Versioned, importable, invokable as a CLI subcommand. Goes through `pyproject.toml` / `package.json`. Earns CHANGELOG entries + semver + (eventually) a registry release. | Humans + scripted automation | `pip install <package>` / `npm install <package>` once promoted; `pip install -e .` until then. |
+| **Standalone scripts** under `<tool-category>/` directories at repo root (e.g. `audio/`, `cdp/`, `observability/`) | One-shot helpers / quick tools. Run directly. Each script is self-contained; may be in a different language than the package. | Humans, ad-hoc | `git clone` + run-the-script. No semver, no install step. |
+| **MCP server** under `<package-name>/mcp_server.py` (or similar), exposed as a separate console script entry point | Curated subset of tools wrapped as MCP tools, returning structured dicts (with stable `error` codes) so agents can branch programmatically on failure modes. | AI agents (Claude Code, Juvant OS instances, any MCP-aware client) | `pip install '<package>[mcp]'`; opt-in optional dep so the package surface stays slim for non-MCP users. |
 
-This split lets the toolbox grow horizontally without forcing every
-script through the package's release discipline. Quick utilities that
-don't deserve versioning live as standalone scripts; when one earns
-import-by-others or CLI-subcommand status, it migrates into the package.
+This three-way split lets the toolbox grow horizontally without forcing
+every script through the package's release discipline, AND lets agents
+reach the high-value automatable tools through a single canonical
+interface. Quick utilities that don't deserve versioning live as
+standalone scripts; when one earns import-by-others or CLI-subcommand
+status, it migrates into the package; when one is genuinely useful to
+agents (deterministic input/output, environment-light), it's also
+exposed via the MCP entry point.
+
+**Not every tool gets MCP exposure.** Filter pull-driven, when a real
+agent has a real need. Push-driven design ("maybe an agent will want
+this") generates orphan tool registrations that fail the toolbox spec's
+"orphan files" anti-pattern. Tools that are interactive, environment-
+dependent (require a running browser, an external server on a fixed
+port), or long-running with real-time output are bad MCP candidates
+even when they're great human tools.
 
 The repo name (`juvant-tools`, kebab-case) and the package name
-(`juvant_tools`, snake_case) deliberately differ — that's the conventional
-Python disambiguation between "the project" and "the import path".
+(`juvant_tools`, snake_case) deliberately differ — that's the
+conventional Python disambiguation between "the project" and "the
+import path".
 
 When a toolbox is **single-language and entirely packaged** (e.g. every
-tool is a subcommand of one CLI), the unpackaged-script directories may
-not exist. That's fine; the layout scales down as well as up.
+tool is a subcommand of one CLI), the standalone-script directories may
+not exist. Same for the MCP entry point — it's optional and added when
+the toolbox has at least one MCP-friendly tool. The layout scales down
+as well as up.
 
 ## Required files
 
@@ -249,9 +265,10 @@ Optional but encouraged:
 
 **[`juvantlabs/juvant-tools`](https://github.com/juvantlabs/juvant-tools)**
 — created 2026-05-03 as the canonical home for OSS-shareable Juvant
-utility scripts. As of 2026-05-03 it ships:
+utility scripts. As of 2026-05-03 it demonstrates all three entry-point
+modes from this spec running in parallel:
 
-**Packaged (juvant-tools `<subcommand>` after `pip install -e .`)**
+**Packaged CLI (juvant-tools `<subcommand>` after `pip install -e .`)**
 
 - [`scaffold mcp-server`](https://github.com/juvantlabs/juvant-tools/blob/main/juvant_tools/scaffolders/mcp_server/README.md)
   v0.2 — generates a new `juvantlabs/<vendor>-mcp-server` repo skeleton
@@ -259,6 +276,16 @@ utility scripts. As of 2026-05-03 it ships:
   including CI workflows + ESLint flat config + vitest config; the
   three CI grep checks (stdout discipline, dead-code, README env-var
   accuracy) pass green on a fresh scaffold.
+
+**MCP server (`juvant-tools-mcp` after `pip install '.[mcp]'`)**
+
+- `scaffold_mcp_server` — same scaffolder logic, exposed as an MCP
+  tool over stdio. Agents call with `{vendor, description,
+  output_path, scope}`, receive a structured dict (`status: "ok" | "error"`,
+  `error: "output_path_exists" | "invalid_vendor_name" | …` on failure
+  with hint). Refuses to overwrite existing dirs — destructive
+  operations stay separate from creation per agent-tool best practice.
+  Today only this one tool; more added pull-driven.
 
 **Standalone scripts (`python3 <category>/<script>.py`)**
 
