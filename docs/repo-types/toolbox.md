@@ -249,26 +249,48 @@ Optional but encouraged:
 
 **[`juvantlabs/juvant-tools`](https://github.com/juvantlabs/juvant-tools)**
 — created 2026-05-03 as the canonical home for OSS-shareable Juvant
-utility scripts. First tool shipped 2026-05-03:
-[`scaffold mcp-server`](https://github.com/juvantlabs/juvant-tools/blob/main/juvant_tools/scaffolders/mcp_server/README.md)
-generates a new `juvantlabs/<vendor>-mcp-server` repo skeleton from the
-[`mcp-server.md`](mcp-server.md) spec.
+utility scripts. As of 2026-05-03 it ships:
 
-Stack: Python ≥ 3.10, click for CLI, jinja2 for templating, pytest for
-tests, hatchling build, pyproject.toml. Distributed via `git clone` +
-editable install (`pip install -e .`); PyPI name `juvant-tools` is
-reserved but unpublished until the toolbox earns it (per
-[Promote to registry](#promote-to-registry)).
+**Packaged (juvant-tools `<subcommand>` after `pip install -e .`)**
+
+- [`scaffold mcp-server`](https://github.com/juvantlabs/juvant-tools/blob/main/juvant_tools/scaffolders/mcp_server/README.md)
+  v0.2 — generates a new `juvantlabs/<vendor>-mcp-server` repo skeleton
+  conforming to [`mcp-server.md`](mcp-server.md). 15 required files,
+  including CI workflows + ESLint flat config + vitest config; the
+  three CI grep checks (stdout discipline, dead-code, README env-var
+  accuracy) pass green on a fresh scaffold.
+
+**Standalone scripts (`python3 <category>/<script>.py`)**
+
+- [`audio/video_to_audio.py`](https://github.com/juvantlabs/juvant-tools/blob/main/audio/README.md) — ffmpeg wrapper.
+- [`audio/raw_pcm_to_wav.py`](https://github.com/juvantlabs/juvant-tools/blob/main/audio/README.md) — raw PCM → WAV with silence trim + downsample.
+- [`stt/azure_stt.py`](https://github.com/juvantlabs/juvant-tools/blob/main/stt/README.md) — Azure Speech-to-Text with optional diarization.
+- [`cdp/http_spy.py`](https://github.com/juvantlabs/juvant-tools/blob/main/cdp/README.md) — Chrome DevTools Protocol HTTP spy.
+- [`cdp/websocket_spy.py`](https://github.com/juvantlabs/juvant-tools/blob/main/cdp/README.md) — Chrome DevTools Protocol WebSocket spy.
+- [`grpc/explorer.py`](https://github.com/juvantlabs/juvant-tools/blob/main/grpc/README.md) — interactive gRPC explorer with reflection + auto-fallback to `--proto-dir`. All four method kinds.
+
+Stack: Python ≥ 3.10. The packaged subcommand uses click + jinja2 +
+pytest; standalone scripts use whatever fits each task (e.g.
+`grpc/explorer.py` pulls in `grpcio` + `grpcio-reflection` opt-in).
+Distributed via `git clone` + editable install (`pip install -e .`);
+PyPI name `juvant-tools` is reserved but unpublished until the
+toolbox earns it (per [Promote to registry](#promote-to-registry)).
 
 Demonstrates the toolbox spec working end-to-end:
 
-- Required files (README, LICENSE, .gitignore, CODEOWNERS, CI workflow,
-  SECURITY.md, CONTRIBUTING.md) all present.
-- Pattern conventions followed: language-flexible (Python here),
-  CLI-first, light formality but complete documentation, test smoke +
-  unit coverage on the scaffolder logic itself.
-- Anti-patterns avoided: no business-confidential strings, no hardcoded
-  credentials, no product-coupling.
+- Both layout halves of the [dual layout](#packaged-vs-unpackaged-tools--the-dual-layout)
+  active simultaneously: `juvant_tools/` for the packaged scaffolder,
+  `audio/` `stt/` `cdp/` `grpc/` for the standalone debug helpers.
+- Required files all present (README, LICENSE, `.gitignore`,
+  `.github/CODEOWNERS`, CI workflow, `SECURITY.md`, `CONTRIBUTING.md`).
+- Pattern conventions followed: language-flexible (Python today,
+  but the spec allows mixed-language toolboxes), CLI-first per script,
+  per-category READMEs, test coverage on the packaged scaffolder.
+- Anti-patterns avoided: no business-confidential strings, no
+  hardcoded credentials, no product-coupling. Heavy optional
+  dependencies (Azure SDK, grpcio) are not pulled in by the package's
+  `pyproject.toml` — users install only when they want a specific
+  tool.
 
 ### Counter-example — what NOT to do
 
