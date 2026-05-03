@@ -225,20 +225,30 @@ Optional but encouraged:
 
 ## Canonical reference
 
-**(none yet)**.
+**[`juvantlabs/juvant-tools`](https://github.com/juvantlabs/juvant-tools)**
+— created 2026-05-03 as the canonical home for OSS-shareable Juvant
+utility scripts. Currently **scaffold-only**: README, LICENSE, .gitignore,
+.github/CODEOWNERS, CI workflow, SECURITY.md, CONTRIBUTING.md — all per
+this spec, no tools yet. The first tool will land via PR.
 
-The canonical reference will be the first public toolbox shipped under
-`juvantlabs/juvant-tools` — a yet-to-be-populated repo for OSS-shareable
-Juvant utility scripts. Its primary language and tool set will emerge
-as real generic tools are written. When it ships, this section is
-updated to point at it.
+The "canonical reference" status of this repo materializes when the
+first real tool ships. Until then, it serves as the validated empty
+scaffold demonstrating that the spec produces a coherent layout when
+followed literally.
 
-A counter-example exists at `juvantio/juvant-dev-tools` (renamed
-`juvantio/hardys-dev-tools`): a toolbox repo that started OSS-named but
-became entirely product-specific over time. Useful as a study of what
-NOT to do — the failure mode is the slow drift from generic to
-product-specific without a structural reckoning. The split-when-generic-
-becomes-specific rule above is the codified lesson.
+### Counter-example — what NOT to do
+
+[`juvantio/hardys-dev-tools`](https://github.com/juvantio/hardys-dev-tools)
+(renamed from `juvantio/juvant-dev-tools` on 2026-05-03) is the
+canonical study of what NOT to do: a toolbox repo that started
+OSS-named ("juvant-dev-tools") but accumulated entirely product-specific
+content (Blackboard Collaborate connector debugging, Hardys-prefixed
+prompts, product-specific Docker/ACA scripts). The slow drift from
+generic to product-specific without a structural reckoning produced a
+repo that nobody outside Hardys could use, despite the OSS-leaning
+name. The split-when-generic-becomes-specific rule documented above is
+the codified lesson; the rename to `hardys-dev-tools` aligns the name
+with the actual scope.
 
 ## Naming convention
 
