@@ -227,14 +227,26 @@ Optional but encouraged:
 
 **[`juvantlabs/juvant-tools`](https://github.com/juvantlabs/juvant-tools)**
 — created 2026-05-03 as the canonical home for OSS-shareable Juvant
-utility scripts. Currently **scaffold-only**: README, LICENSE, .gitignore,
-.github/CODEOWNERS, CI workflow, SECURITY.md, CONTRIBUTING.md — all per
-this spec, no tools yet. The first tool will land via PR.
+utility scripts. First tool shipped 2026-05-03:
+[`scaffold mcp-server`](https://github.com/juvantlabs/juvant-tools/blob/main/juvant_tools/scaffolders/mcp_server/README.md)
+generates a new `juvantlabs/<vendor>-mcp-server` repo skeleton from the
+[`mcp-server.md`](mcp-server.md) spec.
 
-The "canonical reference" status of this repo materializes when the
-first real tool ships. Until then, it serves as the validated empty
-scaffold demonstrating that the spec produces a coherent layout when
-followed literally.
+Stack: Python ≥ 3.10, click for CLI, jinja2 for templating, pytest for
+tests, hatchling build, pyproject.toml. Distributed via `git clone` +
+editable install (`pip install -e .`); PyPI name `juvant-tools` is
+reserved but unpublished until the toolbox earns it (per
+[Promote to registry](#promote-to-registry)).
+
+Demonstrates the toolbox spec working end-to-end:
+
+- Required files (README, LICENSE, .gitignore, CODEOWNERS, CI workflow,
+  SECURITY.md, CONTRIBUTING.md) all present.
+- Pattern conventions followed: language-flexible (Python here),
+  CLI-first, light formality but complete documentation, test smoke +
+  unit coverage on the scaffolder logic itself.
+- Anti-patterns avoided: no business-confidential strings, no hardcoded
+  credentials, no product-coupling.
 
 ### Counter-example — what NOT to do
 

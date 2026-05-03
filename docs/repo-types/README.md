@@ -24,7 +24,7 @@ following the spec literally.
 | 1 | [MCP server](mcp-server.md) | `npm publish @juvantlabs/<vendor>-mcp-server`, runnable via `npx` | (planned) finom-mcp-server, m365-graph-mcp-server, aruba-fattura-mcp-server |
 | 2 | [Library](library.md) | per-language registry (PyPI for Python, npm for TS, etc.) | [Engram](https://github.com/juvantlabs/engram) |
 | 3 | [Framework template](framework.md) | `git push --mirror` to adopter org | [juvant-os](https://github.com/juvantlabs/juvant-os) |
-| 4 | [Toolbox](toolbox.md) | `git clone` (+ optional language-registry install) | [juvant-tools](https://github.com/juvantlabs/juvant-tools) (scaffold-only, first tool incoming) |
+| 4 | [Toolbox](toolbox.md) | `git clone` (+ optional language-registry install) | [juvant-tools](https://github.com/juvantlabs/juvant-tools) (first tool shipped: `scaffold mcp-server`) |
 
 ## Decision tree — choose your repo type
 
