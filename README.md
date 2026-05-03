@@ -11,6 +11,11 @@ that span the OSS framework family (`juvantlabs/juvant-os` and the
   disclosure process, MCP-server-naming convention, etc.). Distinct from
   framework-level architecture, which lives at
   [`juvantlabs/juvant-os/docs/adr/`](https://github.com/juvantlabs/juvant-os/tree/main/docs/adr).
+- [`docs/repo-types/`](docs/repo-types/) — **Specifications for the four
+  canonical kinds of repository** under `juvantlabs/*`: MCP server,
+  library, framework template, toolbox. The source of truth when
+  creating a new repo: AI agents and human contributors read the
+  matching spec and produce a conforming repo by following it literally.
 
 ## What does NOT live here
 
