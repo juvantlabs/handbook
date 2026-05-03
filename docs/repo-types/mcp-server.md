@@ -93,7 +93,7 @@ juvantlabs/<vendor>-mcp-server/
 | `ARCHITECTURE.md` | Design rationale: why this MCP, what's in scope, what's not, threat model summary | Cite referenced spec / handbook docs |
 | `CHANGELOG.md` | Keep a Changelog format, semver bumps | Public history; tag-driven releases |
 | `CONTRIBUTING.md` | How to file bugs, security disclosures, PRs | Point at `juvantlabs/handbook` for org-level governance |
-| `SECURITY.md` | Threat model, disclosure path (GitHub Security Advisory or email) | Required by `juvantlabs` policy; non-optional |
+| `SECURITY.md` | Disclosure channels + SLOs + supported versions; follows the [`SECURITY-template.md`](../security/SECURITY-template.md) baseline | Required; pointer back to [`docs/security/disclosure-process.md`](../security/disclosure-process.md) is mandatory |
 | `LICENSE` | MIT (canonical text, do not paraphrase) | |
 | `package.json` | Dependencies pinned; `engines: { "node": ">=20" }` mandatory | |
 | `tsconfig.json` | `strict: true`, `noImplicitAny: true`, `strictNullChecks: true` | No `any` casts in production code; if temp use is essential, justify in PR |

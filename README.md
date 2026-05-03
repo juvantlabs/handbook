@@ -16,6 +16,11 @@ that span the OSS framework family (`juvantlabs/juvant-os` and the
   library, framework template, toolbox. The source of truth when
   creating a new repo: AI agents and human contributors read the
   matching spec and produce a conforming repo by following it literally.
+- [`docs/security/`](docs/security/) — **Security disclosure process**
+  for both incoming reports (someone reports a vuln in our code) and
+  outgoing audits (we review a community alternative and find vulns).
+  Includes templates: `SECURITY.md` for every `juvantlabs/*` repo + audit
+  report structure for outgoing public gists.
 
 ## What does NOT live here
 

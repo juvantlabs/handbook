@@ -107,7 +107,7 @@ juvantlabs/<library-name>/
 | `ARCHITECTURE.md` | Design rationale, key invariants, performance characteristics, "why this design over the alternatives" |
 | `CHANGELOG.md` | Keep a Changelog format, semver-aligned |
 | `CONTRIBUTING.md` | Issue / PR / dev-loop instructions |
-| `SECURITY.md` | Disclosure policy, threat model, supported versions |
+| `SECURITY.md` | Disclosure channels + SLOs + supported versions; follows the [`SECURITY-template.md`](../security/SECURITY-template.md) baseline. Pointer back to [`docs/security/disclosure-process.md`](../security/disclosure-process.md) is mandatory |
 | `LICENSE` | MIT (or compatible if upstream forces; non-MIT is exceptional and requires CA + CSO joint approval) |
 | `ROADMAP.md` | Optional — recommended for libraries that ship across multiple quarters with a coherent trajectory |
 | Language manifest | `pyproject.toml` (Python), `package.json` (TS), etc. |
