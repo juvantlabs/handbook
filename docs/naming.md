@@ -220,6 +220,76 @@ padded. See `juvantlabs/handbook/docs/adr/README.md` and
 Example: `mcp-onedrive-sharepoint-security-review-2026-05-03.md` for
 the ftaricano audit.
 
+## Copyright + LICENSE
+
+The **copyright holder** for every `juvantlabs/*` repo is **`Juvant Srls`**
+— the Italian S.r.l. (limited liability company) that owns the OSS work
+product. Not `juvantlabs`, which is a GitHub user account / namespace
+identifier and has no legal personhood.
+
+### MIT LICENSE convention
+
+For repos shipped under MIT (the default for `juvantlabs/*-mcp-server`,
+libraries, framework templates, and OSS-shareable toolboxes):
+
+```
+MIT License
+
+Copyright (c) <year> Juvant Srls
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+...
+```
+
+`<year>` is the year of first commit on the repo (or first publication).
+Don't update the year on every commit — semantic copyright dating uses the
+year of original work; the line is conventionally a single year, not a
+range, unless the repo has been actively rewritten across multiple years.
+
+### CC0 dedication convention
+
+For repos that dedicate to public domain (the default for `juvantlabs/handbook`
+documentation):
+
+```
+CC0 1.0 Universal (CC0 1.0)
+Public Domain Dedication
+
+To the extent possible under law, Juvant Srls has waived all copyright
+and related or neighboring rights to the documentation in this repository
+under the CC0 1.0 Universal Public Domain Dedication.
+
+[then the standard CC0 legal text]
+```
+
+### Why this matters
+
+- Copyright is held by **legal persons** (humans or companies), not by
+  GitHub usernames. A LICENSE line that names "juvantlabs" as copyright
+  holder is technically defective — `juvantlabs` cannot hold copyright
+  because it has no legal personhood.
+- Future legal events (acquisition, IP transfer, dissolution, bankruptcy)
+  affect the **legal entity**, not the GitHub identity. Naming Juvant Srls
+  as copyright holder makes the chain of custody legally clear.
+- Per [ADR 0001](adr/0001-account-and-org-structure.md), `juvantlabs` is
+  the OSS user account; `juvantio` is the commercial organization; both
+  ultimately roll up to Juvant Srls (the founding legal entity). Future
+  re-evaluation triggers (acquisition, foundation transition) may change
+  this; ADR 0001's modification flow governs.
+
+### When the copyright holder differs
+
+For an external community contributor's substantial PR, the contributor
+retains copyright on their changes (per the standard MIT inbound = MIT
+outbound convention). The repo's LICENSE line still lists Juvant Srls as
+the original-work copyright holder; the contributor's authorship is
+preserved through git history + co-author tags, not through LICENSE
+edits.
+
+If a future repo forks this convention (e.g. a `juvantlabs/*` foundation-
+governed project), document the deviation in the repo's LICENSE
++ a corresponding ADR.
+
 ## What this doc does NOT cover
 
 - **Code-level naming conventions** (variables, functions, classes).

@@ -119,7 +119,7 @@ per [ADR 0001](../adr/0001-account-and-org-structure.md).
 | `<ORCHESTRATOR>.md` | The Skill / Skill-orchestrator that the runtime loads (e.g. `JUVANT_OS.md` for Juvant OS) |
 | `<INVARIANTS>.md` | Cross-cutting invariants that all components defer to (e.g. `SYSTEM_INVARIANTS.md`) |
 | `CHANGELOG.md` | Versioned framework releases |
-| `LICENSE` | MIT |
+| `LICENSE` | MIT. Copyright holder: **Juvant Srls** (legal entity); see [`docs/naming.md` § Copyright + LICENSE](../naming.md#copyright--license) |
 | `docs/adr/` | At least an index README + the framework's own architectural decisions |
 | `.github/workflows/lint.yml` | CI for the framework template itself (markdown lint, YAML frontmatter check, schema syntax check, secret detector) |
 | `SECURITY.md` | Disclosure channels + SLOs + supported versions; follows the [`SECURITY-template.md`](../security/SECURITY-template.md) baseline. Pointer back to [`docs/security/disclosure-process.md`](../security/disclosure-process.md) is mandatory |

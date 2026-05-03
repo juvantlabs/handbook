@@ -120,7 +120,7 @@ add the language manifest at the root:
 | File | Purpose | Notes |
 |---|---|---|
 | `README.md` | What the toolbox is for, list of tools with one-line description, install / clone instructions, contribution pointer | Must list every tool; orphan files in repo root are anti-pattern (see below) |
-| `LICENSE` | MIT for `juvantlabs/*` toolboxes | Required; never ship a toolbox without LICENSE — historical mistake on `juvantio/juvant-dev-tools` (LICENSE: null) |
+| `LICENSE` | MIT for `juvantlabs/*` toolboxes. Copyright holder: **Juvant Srls** (legal entity); see [`docs/naming.md` § Copyright + LICENSE](../naming.md#copyright--license) | Required; never ship a toolbox without LICENSE — historical mistake on `juvantio/juvant-dev-tools` (LICENSE: null) |
 | `.gitignore` | Standard ignore patterns + secrets / `.env` | Same ignore baseline as juvant-os |
 
 ## Conventions

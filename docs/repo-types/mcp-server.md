@@ -101,7 +101,7 @@ juvantlabs/<vendor>-mcp-server/
 | `CHANGELOG.md` | Keep a Changelog format, semver bumps | Public history; tag-driven releases |
 | `CONTRIBUTING.md` | How to file bugs, security disclosures, PRs | Point at `juvantlabs/handbook` for org-level governance |
 | `SECURITY.md` | Disclosure channels + SLOs + supported versions; follows the [`SECURITY-template.md`](../security/SECURITY-template.md) baseline | Required; pointer back to [`docs/security/disclosure-process.md`](../security/disclosure-process.md) is mandatory |
-| `LICENSE` | MIT (canonical text, do not paraphrase) | |
+| `LICENSE` | MIT (canonical text, do not paraphrase). Copyright holder: **Juvant Srls** (legal entity); see [`docs/naming.md` § Copyright + LICENSE](../naming.md#copyright--license) | |
 | `package.json` | Dependencies pinned; `engines: { "node": ">=20" }` mandatory | |
 | `tsconfig.json` | `strict: true`, `noImplicitAny: true`, `strictNullChecks: true` | No `any` casts in production code; if temp use is essential, justify in PR |
 | `.github/workflows/ci.yml` | Run on every PR + push to main | See "CI requirements" below |

@@ -108,7 +108,7 @@ juvantlabs/<library-name>/
 | `CHANGELOG.md` | Keep a Changelog format, semver-aligned |
 | `CONTRIBUTING.md` | Issue / PR / dev-loop instructions |
 | `SECURITY.md` | Disclosure channels + SLOs + supported versions; follows the [`SECURITY-template.md`](../security/SECURITY-template.md) baseline. Pointer back to [`docs/security/disclosure-process.md`](../security/disclosure-process.md) is mandatory |
-| `LICENSE` | MIT (or compatible if upstream forces; non-MIT is exceptional and requires CA + CSO joint approval) |
+| `LICENSE` | MIT (or compatible if upstream forces; non-MIT is exceptional and requires CA + CSO joint approval). Copyright holder: **Juvant Srls** (legal entity); see [`docs/naming.md` § Copyright + LICENSE](../naming.md#copyright--license) |
 | `ROADMAP.md` | Optional — recommended for libraries that ship across multiple quarters with a coherent trajectory |
 | Language manifest | `pyproject.toml` (Python), `package.json` (TS), etc. |
 | Lockfile | Committed for reproducible installs |
