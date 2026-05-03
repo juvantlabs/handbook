@@ -242,15 +242,9 @@ name + content, and you have a conforming repo within minutes.
 
 ## Naming convention
 
-`juvantlabs/<library-name>`
-
-- `<library-name>` is short, lowercase, hyphenated, descriptive
-  (`engram`, `flux`, `lattice`).
-- No suffix (no `-lib`, no `-sdk` — those are noise).
-- The Python / npm package name SHOULD match the repo name. When the
-  registry name is taken (as Engram experienced with `engram` on PyPI
-  → `engram-browser`), document the discrepancy in the README and the
-  reason in ARCHITECTURE.md.
+`juvantlabs/<library-name>` (no suffix). Full rules (registry-name
+fallback when the canonical name is taken, e.g. Engram → `engram-browser`)
+live in [`docs/naming.md`](../naming.md). This spec adds no exceptions.
 
 ## Lifecycle
 

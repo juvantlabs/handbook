@@ -21,6 +21,10 @@ that span the OSS framework family (`juvantlabs/juvant-os` and the
   outgoing audits (we review a community alternative and find vulns).
   Includes templates: `SECURITY.md` for every `juvantlabs/*` repo + audit
   report structure for outgoing public gists.
+- [`docs/naming.md`](docs/naming.md) — **Naming conventions** across the
+  `juvantlabs` ecosystem: repo names per type, package / registry names,
+  branch / tag / commit / issue conventions. Single source of truth that
+  the four repo-type specs reference rather than duplicating.
 
 ## What does NOT live here
 

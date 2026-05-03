@@ -245,14 +245,10 @@ When the first MCP server ships, its repo URL goes here. Until then:
 
 ## Naming convention
 
-`juvantlabs/<vendor>-mcp-server`
-
-- `<vendor>` lowercase, hyphenated. Single dominant vendor (Finom,
-  Mercury, Aruba) → name uses the vendor (`finom-mcp-server`).
-- Multi-vendor or vendor-family wrapping → prefix with the family
-  (`m365-graph-mcp-server` covers OneDrive + SharePoint + Calendar
-  through one Graph endpoint).
-- Suffix `-mcp-server` is mandatory for discoverability and CI rules.
+`juvantlabs/<vendor>-mcp-server`. Full naming rules (vendor / family
+prefixes, suffix mandate, npm scoped package names) live in
+[`docs/naming.md`](../naming.md) — refer there for the canonical
+patterns. This spec adds no exceptions.
 
 ## Lifecycle
 

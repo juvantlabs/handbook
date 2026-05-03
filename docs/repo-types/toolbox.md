@@ -242,17 +242,9 @@ becomes-specific rule above is the codified lesson.
 
 ## Naming convention
 
-- **Public, OSS-shareable**: `juvantlabs/<name>-tools` or
-  `juvantlabs/<name>-toolbox`. The `-tools` / `-toolbox` suffix is
-  mandatory for discoverability and CI rules.
-- **Private, product-coupled**: `juvantio/<product>-dev-tools`. Same
-  suffix convention; lives in `juvantio/` because product coupling
-  forecloses OSS sharing.
-
-When a toolbox is broadly applicable to all `juvantlabs/*` consumers
-(e.g. linting tools for Juvant OS instances, scaffolders for new
-`juvantlabs/*-mcp-server` repos), name it after the consumer family
-(`juvantlabs/juvant-tools` for Juvant OS adopter tooling).
+`juvantlabs/<name>-tools` (public) or `juvantio/<product>-dev-tools`
+(private, product-coupled). Full rules and the public-vs-private split
+rationale live in [`docs/naming.md`](../naming.md).
 
 ## Lifecycle
 

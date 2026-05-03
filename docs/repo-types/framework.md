@@ -271,15 +271,11 @@ juvant-os exemplifies the spec by:
 
 ## Naming convention
 
-`juvantlabs/<framework-name>-os` — when the framework is an "operating
-system" pattern (the canonical case). Other framework patterns may use
-different suffixes (e.g. `<framework-name>-platform`, `<framework-name>-runtime`)
-when they emerge. For now `juvant-os` is the only example, and the
-`-os` suffix is appropriate.
-
-The `<framework-name>` prefix should match the meaningful identity of
-the framework — `juvant` for the canonical Juvant OS; future verticals
-(`edu`, `health`, `legal`) would prefix accordingly.
+`juvantlabs/<framework-name>-os`. Full rules (when other suffixes like
+`-platform` / `-runtime` are appropriate, vertical prefixes for
+hypothetical `juvant-edu-os`, etc.) live in [`docs/naming.md`](../naming.md).
+This spec adds no exceptions; new framework suffixes warrant a
+follow-up ADR before adoption.
 
 ## Lifecycle
 
