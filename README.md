@@ -25,6 +25,13 @@ that span the OSS framework family (`juvantlabs/juvant-os` and the
   `juvantlabs` ecosystem: repo names per type, package / registry names,
   branch / tag / commit / issue conventions. Single source of truth that
   the four repo-type specs reference rather than duplicating.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — **Meta contributor guide** for
+  all `juvantlabs/*` repos: where to file what, PR process, commit
+  style, AI-assisted contribution conventions, code-of-conduct pointer.
+  Per-repo `CONTRIBUTING.md` files follow this template.
+- [`docs/contributing/code-of-conduct.md`](docs/contributing/code-of-conduct.md)
+  — Code of Conduct (Contributor Covenant 2.1, adapted) governing all
+  `juvantlabs/*` interactions.
 
 ## What does NOT live here
 
