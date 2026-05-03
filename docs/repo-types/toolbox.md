@@ -115,6 +115,28 @@ add the language manifest at the root:
 
 (See [library.md](library.md) for the per-language file conventions.)
 
+### Packaged vs. unpackaged tools — the dual layout
+
+A toolbox repo MAY (and often will) host both kinds of tool side-by-side:
+
+| Layout | What lives there | Distribution |
+|---|---|---|
+| `<package-name>/` (e.g. `juvant_tools/`, snake_case to match the language's import rules) | Code we want versioned + importable + invokable as a CLI subcommand. Goes through `pyproject.toml` / `package.json`. Earns CHANGELOG entries, semver, and (eventually) a registry release. | `pip install <package>` / `npm install <package>` once promoted; `pip install -e .` until then. |
+| `<tool-category>/` directories at repo root (e.g. `observability/`, `build/`, `audit/`, `disclosure-helpers/`) | Standalone scripts / one-shot helpers / quick tools. Run directly. May be in a different language than the packaged code (bash, ts, etc.). | `git clone` + run-the-script. No semver, no install step. |
+
+This split lets the toolbox grow horizontally without forcing every
+script through the package's release discipline. Quick utilities that
+don't deserve versioning live as standalone scripts; when one earns
+import-by-others or CLI-subcommand status, it migrates into the package.
+
+The repo name (`juvant-tools`, kebab-case) and the package name
+(`juvant_tools`, snake_case) deliberately differ — that's the conventional
+Python disambiguation between "the project" and "the import path".
+
+When a toolbox is **single-language and entirely packaged** (e.g. every
+tool is a subcommand of one CLI), the unpackaged-script directories may
+not exist. That's fine; the layout scales down as well as up.
+
 ## Required files
 
 | File | Purpose | Notes |
