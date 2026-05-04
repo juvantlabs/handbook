@@ -181,8 +181,20 @@ broad scope like `Files.ReadWrite.All` requires explicit rationale.
   `list_invoices`, not `bank-get-balance` or `getBalance`).
 - Tool handlers wire real validators on every untrusted input. Validators
   cannot exist in source as dead code (CI grep enforces this).
-- Delete-class operations gate through a spec / approval pattern (cf. the
-  `m365-delete-spec` pattern in FEAT-014).
+- **Tool categorization (mandatory per [ADR 0004](../adr/0004-agent-action-guardrails.md))**:
+  every tool is annotated as `read`, `write_idempotent`, or
+  `write_irreversible`. Ambiguity resolves to the strictest. Used by
+  CI to enforce confirmation-token requirements (next bullet).
+- **Confirmation token gate for `write_irreversible` tools (mandatory
+  per [ADR 0004](../adr/0004-agent-action-guardrails.md))**: every
+  `write_irreversible` tool's input schema declares an optional
+  `confirmation_token: string` parameter. First call (no token)
+  returns a preview + token bound to SHA-256 of canonical-JSON spec
+  (≤ 10 min expiry, single-use). Second call (with matching token)
+  consumes + executes. Mismatched / expired tokens fail without
+  executing. Implementation reference: `m365-graph-mcp-server`
+  `src/auth/confirmation_tokens.ts` + `delete_file` /
+  `cancel_event` / `decline_event` handlers.
 
 ### CI requirements
 
@@ -201,6 +213,13 @@ Every PR and push to `main` runs:
    any hit fails the build.
 8. **README accuracy check**: every env var documented in README must
    be referenced in `src/` via `process.env.X`. Mismatches fail the build.
+9. **Confirmation-token enforcement for `write_irreversible` tools**
+   (mandatory per [ADR 0004](../adr/0004-agent-action-guardrails.md)):
+   grep tool source files for the `write_irreversible` annotation.
+   For each match, verify the input schema declares
+   `confirmation_token` AND the handler imports `consumeConfirmation`.
+   Missing either fails the build. Removing or disabling this step
+   requires a successor ADR overriding 0004.
 
 Publish runs on tag push (`v*`) — separate workflow, requires manual
 approval gate.
